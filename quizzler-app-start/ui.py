@@ -38,7 +38,7 @@ class QuizInterface:
             
     def answer_true(self):
         usr_answer = 'True'
-        if usr_answer == self.question.answer:
+        if self.quiz.check_answer(usr_answer):
             self.score += 1
             self.score_label.config(text=f"Score:{self.score}")
         try:
@@ -49,7 +49,7 @@ class QuizInterface:
     
     def answer_false(self):
         usr_answer = 'False'
-        if usr_answer == self.question.answer:
+        if self.quiz.check_answer(usr_answer):
             self.score += 1
             self.score_label.config(text=f"Score:{self.score}")
         try:
@@ -57,3 +57,4 @@ class QuizInterface:
         except IndexError:
             self.false_button.config(state='disable')
             self.canvas.itemconfig(self.question_text, text=f"Final Score{self.score} / 10")
+            
